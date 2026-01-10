@@ -4,13 +4,14 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
-import { Loader2 } from "lucide-react"
+import { Loader2, AlertCircle, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import type { Session } from "next-auth"
 import { signIn } from "next-auth/react"
+import { Alert, AlertContent, AlertDescription, AlertIcon, AlertTitle } from "@/components/mono-alerts"
 
 const formSchema = z.object({
     toolName: z.string().min(2, "Name must be at least 2 characters"),
@@ -21,6 +22,7 @@ const formSchema = z.object({
 export function RequestToolForm({ session }: { session: Session | null }) {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [isSuccess, setIsSuccess] = useState(false)
+    const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
     const {
         register,
@@ -33,19 +35,33 @@ export function RequestToolForm({ session }: { session: Session | null }) {
 
     const onSubmit = async (data: z.infer<typeof formSchema>) => {
         setIsSubmitting(true)
+        setErrorMessage(null)
         try {
             const res = await fetch("/api/webhooks/request-tool", {
                 method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify(data),
             })
 
-            if (!res.ok) throw new Error("Failed")
+            if (!res.ok) {
+                const errorText = await res.text()
+
+                // Check if it's a server membership error
+                if (res.status === 403) {
+                    setErrorMessage(errorText || "You must be a member of our Discord server to submit requests.")
+                } else {
+                    setErrorMessage("Failed to submit request. Please try again.")
+                }
+                return
+            }
 
             setIsSuccess(true)
             reset()
         } catch (e) {
             console.error(e)
-            alert("Something went wrong. Please try again.")
+            setErrorMessage("Something went wrong. Please check your connection and try again.")
         } finally {
             setIsSubmitting(false)
         }
@@ -86,6 +102,34 @@ export function RequestToolForm({ session }: { session: Session | null }) {
                 <h1 className="text-3xl font-bold">Request a Tool</h1>
                 <p className="text-muted-foreground text-sm">Tell us what tool you need, and we'll look into adding it.</p>
             </div>
+
+            {errorMessage && (
+                <Alert variant="destructive" appearance="light" size="md">
+                    <AlertIcon>
+                        <AlertCircle />
+                    </AlertIcon>
+                    <AlertContent>
+                        <AlertTitle>Unable to Submit Request</AlertTitle>
+                        <AlertDescription>
+                            <p>{errorMessage}</p>
+                            {errorMessage.includes("Discord server") && (
+                                <div className="mt-3">
+                                    <Button
+                                        type="button"
+                                        size="sm"
+                                        variant="outline"
+                                        className="gap-2"
+                                        onClick={() => window.open("https://discord.gg/VgruDnmeBm", "_blank")}
+                                    >
+                                        Join Our Discord Server
+                                        <ExternalLink className="h-3 w-3" />
+                                    </Button>
+                                </div>
+                            )}
+                        </AlertDescription>
+                    </AlertContent>
+                </Alert>
+            )}
 
             <div className="space-y-2">
                 <Label htmlFor="toolName">Tool Name</Label>
