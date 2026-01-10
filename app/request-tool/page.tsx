@@ -3,6 +3,8 @@ import { RequestToolForm } from "./request-form"
 import { Header } from "@/components/header-with-search"
 import { Particles } from "@/components/ui/particles"
 
+export const runtime = 'edge'
+
 export default async function RequestToolPage() {
     const session = await auth()
 
