@@ -41,25 +41,25 @@ const Demo = () => {
   }, []);
 
   return (
-    <div className="relative h-screen w-full overflow-hidden">
+    <div className="relative min-h-screen w-full overflow-hidden">
       <Header />
       {/* Full-screen particle background */}
       <div className="absolute inset-0 z-0">
         <Particles quantity={300} className="h-full w-full" color="#000000" />
       </div>
 
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center text-center w-full max-w-5xl px-4">
+      <div className="relative z-10 flex flex-col items-center text-center w-full max-w-5xl px-4 mx-auto pt-32 pb-20">
         {/* Brand Label */}
-        <div className="flex items-center gap-2 mb-8 animate-fade-in-up">
+        <Link href="/" className="flex items-center gap-2 mb-8 animate-fade-in-up hover:opacity-80 transition-opacity cursor-pointer">
           <img src="/cameleon.png" alt="Cameleon Logo" className="size-8" />
           <span className="font-product text-2xl text-foreground">
             <span className="font-bold">Crucible</span> <span className="font-normal">Cameleon</span>
           </span>
-        </div>
+        </Link>
 
         {/* Main Headlines */}
         <h1 className="font-product text-4xl sm:text-6xl md:text-8xl font-medium tracking-tight mb-4 text-foreground animate-fade-in-up delay-100">
-          Everything you need
+          With every tool exists
         </h1>
         <p className="font-product text-2xl sm:text-4xl md:text-6xl text-muted-foreground mb-8 sm:mb-12 animate-fade-in-up delay-200">
           in one place with the biggest online tools site
@@ -87,6 +87,7 @@ const Demo = () => {
           Start using the tools free by clicking the button above or search for the tool you need by clicking the search button.
         </p>
       </div>
+
     </div>
   );
 };

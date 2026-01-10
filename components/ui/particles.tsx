@@ -71,6 +71,26 @@ export const Particles: React.FC<ParticlesProps> = ({
   const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
   const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
 
+  // Detect dark mode and update particle color
+  useEffect(() => {
+    const updateParticleColor = () => {
+      const isDarkMode = document.documentElement.classList.contains('dark');
+      setParticleColor(isDarkMode ? '#ffffff' : '#000000');
+    };
+
+    // Initial check
+    updateParticleColor();
+
+    // Watch for dark mode changes
+    const observer = new MutationObserver(updateParticleColor);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => {
     if (canvasRef.current) {
       context.current = canvasRef.current.getContext("2d");

@@ -1,6 +1,7 @@
 import { Header } from "@/components/header-with-search"
 import { Particles } from "@/components/ui/particles"
 
+
 export default function PrivacyPolicy() {
     return (
         <div className="relative min-h-screen w-full overflow-hidden">
@@ -152,6 +153,7 @@ export default function PrivacyPolicy() {
                     </div>
                 </div>
             </div>
+
         </div>
     )
 }

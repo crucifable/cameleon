@@ -18,6 +18,14 @@ export function Header() {
 			href: '/tools',
 		},
 		{
+			label: 'About',
+			href: '/about',
+		},
+		{
+			label: 'Changelog',
+			href: '/changelog',
+		},
+		{
 			label: 'Privacy',
 			href: '/privacy',
 		},
@@ -35,11 +43,11 @@ export function Header() {
 			)}
 		>
 			<nav className="flex h-14 w-full items-center justify-between px-6">
-				<div className="hover:bg-accent flex cursor-pointer items-center gap-1 rounded-md px-2 py-1 duration-100">
+				<a href="/" className="hover:bg-accent flex cursor-pointer items-center gap-1 rounded-md px-2 py-1 duration-100">
 					<img src="/cameleon.png" alt="Cameleon Logo" className="size-6" />
 					<p className="font-product text-md font-bold">Crucible</p>
 					<p className="font-product text-md">Cameleon</p>
-				</div>
+				</a>
 				<div className="flex items-center gap-2">
 					<div className="hidden items-center gap-1 lg:flex">
 						{links.map((link) => (

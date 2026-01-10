@@ -6,6 +6,7 @@ import { toolsData, ToolItem } from "@/lib/tools-data";
 import { LucideIcon } from "lucide-react";
 import Link from "next/link";
 
+
 export default function ToolsPage() {
     const categories = ['PDF Tools', 'Video Tools', 'Audio Tools', 'Converters'] as const;
 
@@ -17,15 +18,15 @@ export default function ToolsPage() {
             </div>
 
             <div className="relative z-10 flex flex-col items-center pt-32 pb-20 px-4">
-                <div className="text-center mb-16">
-                    <h1 className="font-product text-5xl md:text-6xl font-medium tracking-tight mb-4 animate-fade-in-up">
-                        All Tools
-                    </h1>
-                    <p className="font-product text-xl text-muted-foreground animate-fade-in-up delay-100 max-w-2xl mx-auto">
-                        Free online tools for your daily tasks.
-                    </p>
-                </div>
+                {/* Brand Label */}
+                <Link href="/" className="flex items-center gap-3 mb-16 animate-fade-in-up hover:opacity-80 transition-opacity cursor-pointer">
+                    <img src="/cameleon.png" alt="Cameleon Logo" className="size-12" />
+                    <span className="font-product text-4xl text-foreground">
+                        <span className="font-bold">Crucible</span> <span className="font-normal">Cameleon</span>
+                    </span>
+                </Link>
 
+                {/* Tools Grid */}
                 <div className="w-full max-w-7xl animate-fade-in-up delay-200">
                     {categories.map((category) => {
                         const categoryTools = toolsData.filter((t) => t.category === category);
@@ -46,6 +47,7 @@ export default function ToolsPage() {
                     })}
                 </div>
             </div>
+
         </div>
     );
 }
