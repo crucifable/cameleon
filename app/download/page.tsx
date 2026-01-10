@@ -102,8 +102,8 @@ function DownloadCard({
 }) {
     return (
         <div className={cn(
-            "flex flex-col items-center p-8 rounded-3xl backdrop-blur-md border border-white/10 transition-colors h-full",
-            available ? "bg-secondary/30 hover:bg-secondary/40" : "bg-secondary/10 opacity-75"
+            "flex flex-col items-center p-8 rounded-3xl backdrop-blur-md border border-white/10 transition-colors h-full shadow-xl",
+            available ? "bg-background/50 hover:bg-background/60" : "bg-background/20 opacity-75"
         )}>
             <div className="mb-6 p-4 bg-background/50 rounded-2xl">
                 {icon}

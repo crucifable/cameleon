@@ -11,6 +11,11 @@ import { toolsData } from '@/lib/tools-data';
 
 export function Header() {
 	const [open, setOpen] = React.useState(false);
+	const [mounted, setMounted] = React.useState(false);
+
+	React.useEffect(() => {
+		setMounted(true);
+	}, []);
 
 	const links = [
 		{
@@ -32,6 +37,10 @@ export function Header() {
 		{
 			label: 'Terms',
 			href: '/terms',
+		},
+		{
+			label: 'Settings',
+			href: '/settings',
 		},
 	];
 
@@ -62,7 +71,55 @@ export function Header() {
 						{/* <Button variant="outline">Sign In</Button>
 					<Button>Get Started</Button> */}
 					</div>
-					<SearchModal data={tools}>
+					{mounted ? (
+						<>
+							<SearchModal data={tools}>
+								<Button
+									variant="outline"
+									className="relative size-9 cursor-pointer p-0 md:border xl:h-9 xl:w-60 xl:justify-between xl:px-3 xl:py-2"
+								>
+									<span className="hidden xl:inline-flex">Search...</span>
+									<span className="sr-only">Search</span>
+									<SearchIcon className="size-4" />
+								</Button>
+							</SearchModal>
+							<Sheet open={open} onOpenChange={setOpen}>
+								<Button
+									size="icon"
+									variant="outline"
+									onClick={() => setOpen(!open)}
+									className="lg:hidden"
+								>
+									<MenuIcon className="size-4" />
+								</Button>
+								<SheetContent
+									className="bg-background/95 supports-[backdrop-filter]:bg-background/80 gap-0 backdrop-blur-lg"
+									showClose={false}
+									side="left"
+								>
+									<SheetTitle className="sr-only">Menu</SheetTitle>
+									<div className="grid gap-y-2 overflow-y-auto px-4 pt-12 pb-5">
+										{links.map((link) => (
+											<a
+												key={link.label}
+												className={buttonVariants({
+													variant: 'ghost',
+													className: 'justify-start',
+												})}
+												href={link.href}
+											>
+												{link.label}
+											</a>
+										))}
+									</div>
+									<SheetFooter>
+										<Button variant="outline">Sign In</Button>
+										<Button>Get Started</Button>
+									</SheetFooter>
+								</SheetContent>
+							</Sheet>
+						</>
+					) : (
 						<Button
 							variant="outline"
 							className="relative size-9 cursor-pointer p-0 md:border xl:h-9 xl:w-60 xl:justify-between xl:px-3 xl:py-2"
@@ -71,42 +128,7 @@ export function Header() {
 							<span className="sr-only">Search</span>
 							<SearchIcon className="size-4" />
 						</Button>
-					</SearchModal>
-					<Sheet open={open} onOpenChange={setOpen}>
-						<Button
-							size="icon"
-							variant="outline"
-							onClick={() => setOpen(!open)}
-							className="lg:hidden"
-						>
-							<MenuIcon className="size-4" />
-						</Button>
-						<SheetContent
-							className="bg-background/95 supports-[backdrop-filter]:bg-background/80 gap-0 backdrop-blur-lg"
-							showClose={false}
-							side="left"
-						>
-							<SheetTitle className="sr-only">Menu</SheetTitle>
-							<div className="grid gap-y-2 overflow-y-auto px-4 pt-12 pb-5">
-								{links.map((link) => (
-									<a
-										key={link.label}
-										className={buttonVariants({
-											variant: 'ghost',
-											className: 'justify-start',
-										})}
-										href={link.href}
-									>
-										{link.label}
-									</a>
-								))}
-							</div>
-							<SheetFooter>
-								<Button variant="outline">Sign In</Button>
-								<Button>Get Started</Button>
-							</SheetFooter>
-						</SheetContent>
-					</Sheet>
+					)}
 				</div>
 			</nav>
 		</header>

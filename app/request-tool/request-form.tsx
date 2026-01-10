@@ -71,7 +71,7 @@ export function RequestToolForm({ session }: { session: Session | null }) {
         return (
             <div className="flex flex-col items-center justify-center p-8 text-center space-y-4 bg-background/50 backdrop-blur-md rounded-xl border border-white/10 shadow-xl">
                 <h2 className="text-2xl font-bold">Login Required</h2>
-                <p className="text-muted-foreground">You need to login with Discord to request a new tool.</p>
+                <p className="text-muted-foreground">Please sign in with Discord to continue.</p>
                 <Button
                     onClick={() => signIn("discord")}
                     size="lg"

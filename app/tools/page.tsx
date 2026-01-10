@@ -33,8 +33,8 @@ export default function ToolsPage() {
                         if (categoryTools.length === 0) return null;
 
                         return (
-                            <div key={category} className="mb-16">
-                                <h2 className="font-product text-2xl font-bold mb-8 text-left border-b border-border/40 pb-2">
+                            <div key={category} className="mb-16 bg-background/40 backdrop-blur-md p-8 rounded-3xl border border-white/5 shadow-xl">
+                                <h2 className="font-product text-2xl font-bold mb-8 text-left border-b border-white/10 pb-2">
                                     {category}
                                 </h2>
                                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
