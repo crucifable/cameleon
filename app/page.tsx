@@ -4,6 +4,7 @@ import { Particles } from "@/components/ui/particles"
 import { Header } from "@/components/header-with-search"
 import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
+import Link from "next/link"
 
 const WindowsIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="size-5 mr-2" fill="currentColor"><path d="M480,265H232V444l248,36V265Z" /><path d="M216,265H32V415l184,26.7V265Z" /><path d="M480,32,232,67.4V249H480V32Z" /><path d="M216,69.7,32,96V249H216V69.7Z" /></svg>
@@ -26,14 +27,14 @@ const Demo = () => {
 
   useEffect(() => {
     const userAgent = window.navigator.userAgent;
-    if (userAgent.indexOf("Mac") !== -1) {
-      setOs({ name: "Mac", icon: <AppleIcon /> });
-    } else if (userAgent.indexOf("Linux") !== -1) {
-      setOs({ name: "Linux", icon: <LinuxIcon /> });
-    } else if (userAgent.indexOf("Android") !== -1) {
+    if (userAgent.indexOf("Android") !== -1) {
       setOs({ name: "Android", icon: <AndroidIcon /> });
     } else if (userAgent.indexOf("iPhone") !== -1 || userAgent.indexOf("iPad") !== -1) {
       setOs({ name: "iOS", icon: <AppleIcon /> });
+    } else if (userAgent.indexOf("Mac") !== -1) {
+      setOs({ name: "Mac", icon: <AppleIcon /> });
+    } else if (userAgent.indexOf("Linux") !== -1) {
+      setOs({ name: "Linux", icon: <LinuxIcon /> });
     } else {
       setOs({ name: "Windows", icon: <WindowsIcon /> });
     }
@@ -51,26 +52,35 @@ const Demo = () => {
         {/* Brand Label */}
         <div className="flex items-center gap-2 mb-8 animate-fade-in-up">
           <img src="/cameleon.png" alt="Cameleon Logo" className="size-8" />
-          <span className="font-product text-2xl font-medium text-foreground">Crucible Cameleon</span>
+          <span className="font-product text-2xl text-foreground">
+            <span className="font-bold">Crucible</span> <span className="font-normal">Cameleon</span>
+          </span>
         </div>
 
         {/* Main Headlines */}
-        <h1 className="font-product text-6xl md:text-8xl font-medium tracking-tight mb-4 text-foreground animate-fade-in-up delay-100">
-          Experience liftoff
+        <h1 className="font-product text-4xl sm:text-6xl md:text-8xl font-medium tracking-tight mb-4 text-foreground animate-fade-in-up delay-100">
+          Everything you need
         </h1>
-        <p className="font-product text-4xl md:text-6xl text-muted-foreground mb-12 animate-fade-in-up delay-200">
-          with the next-generation IDE
+        <p className="font-product text-2xl sm:text-4xl md:text-6xl text-muted-foreground mb-8 sm:mb-12 animate-fade-in-up delay-200">
+          in one place with the biggest online tools site
         </p>
 
         {/* Buttons */}
-        <div className="flex items-center gap-4 animate-fade-in-up delay-300">
-          <Button size="lg" className="rounded-full h-12 px-8 text-lg">
-            {os.icon} Download for {os.name}
-          </Button>
-          <Button size="lg" variant="secondary" className="rounded-full h-12 px-8 text-lg bg-secondary/80 hover:bg-secondary">
-            Explore use cases
-          </Button>
+        <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto animate-fade-in-up delay-300 px-4 sm:px-0">
+          <Link href="/download" className="w-full sm:w-auto">
+            <Button size="lg" className="rounded-full h-12 w-full sm:w-auto px-8 text-lg">
+              {os.icon} Download for {os.name}
+            </Button>
+          </Link>
+          <Link href="/tools" className="w-full sm:w-auto">
+            <Button size="lg" variant="secondary" className="rounded-full h-12 w-full sm:w-auto px-8 text-lg bg-secondary/80 hover:bg-secondary">
+              Start using tools
+            </Button>
+          </Link>
         </div>
+        <p className="font-product text-md sm:text-lg md:text-xl text-muted-foreground mt-8 sm:mt-12 animate-fade-in-up delay-200">
+          Start using the tools free by clicking the button above or search for the tool you need by clicking the search button.
+        </p>
       </div>
     </div>
   );

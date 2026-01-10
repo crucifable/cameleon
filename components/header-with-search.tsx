@@ -5,6 +5,9 @@ import { Sheet, SheetContent, SheetFooter, SheetTitle } from '@/components/sheet
 import { Button, buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { CommandItem, SearchModal } from '@/components/search-modal';
+import { toolsData } from '@/lib/tools-data';
+
+
 
 export function Header() {
 	const [open, setOpen] = React.useState(false);
@@ -51,7 +54,7 @@ export function Header() {
 						{/* <Button variant="outline">Sign In</Button>
 					<Button>Get Started</Button> */}
 					</div>
-					<SearchModal data={blogs}>
+					<SearchModal data={tools}>
 						<Button
 							variant="outline"
 							className="relative size-9 cursor-pointer p-0 md:border xl:h-9 xl:w-60 xl:justify-between xl:px-3 xl:py-2"
@@ -102,65 +105,4 @@ export function Header() {
 	);
 }
 
-const blogs: CommandItem[] = [
-	{
-		id: 'blog-1',
-		title: 'The Future of Web Dev',
-		description: 'A quick look at upcoming web technologies.',
-		category: 'Web Dev',
-	},
-	{
-		id: 'blog-2',
-		title: 'Minimalist Design Tips',
-		description: 'Learn how less can often be more in UI design.',
-		category: 'Design',
-	},
-	{
-		id: 'blog-3',
-		title: 'Boosting Page Speed',
-		description: 'Simple tricks to make your site load faster.',
-		category: 'Performance',
-	},
-	{
-		id: 'blog-4',
-		title: 'Intro to TypeScript',
-		description: 'Why TypeScript makes JavaScript safer and clearer.',
-		category: 'Programming',
-	},
-	{
-		id: 'blog-5',
-		title: 'Dark Mode Design',
-		description: 'Best practices for building a dark theme UI.',
-		category: 'Design',
-	},
-	{
-		id: 'blog-6',
-		title: 'Understanding APIs',
-		description: 'Breaking down REST and GraphQL for beginners.',
-		category: 'Backend',
-	},
-	{
-		id: 'blog-7',
-		title: 'CSS Grid Basics',
-		description: 'A quick guide to building layouts with CSS Grid.',
-		category: 'Frontend',
-	},
-	{
-		id: 'blog-8',
-		title: 'React State Management',
-		description: 'Exploring useState, Redux, and other options.',
-		category: 'Frontend',
-	},
-	{
-		id: 'blog-9',
-		title: 'SEO in 2025',
-		description: 'Trends and tips to rank higher on Google.',
-		category: 'SEO',
-	},
-	{
-		id: 'blog-10',
-		title: 'Debugging Like a Pro',
-		description: 'Tools and techniques to fix bugs faster.',
-		category: 'Programming',
-	},
-];
+const tools = toolsData;
