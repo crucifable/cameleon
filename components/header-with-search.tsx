@@ -14,16 +14,16 @@ export function Header() {
 
 	const links = [
 		{
-			label: 'Features',
-			href: '#',
+			label: 'Tools',
+			href: '/tools',
 		},
 		{
-			label: 'Pricing',
-			href: '#',
+			label: 'Privacy',
+			href: '/privacy',
 		},
 		{
-			label: 'About',
-			href: '#',
+			label: 'Terms',
+			href: '/terms',
 		},
 	];
 
