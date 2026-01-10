@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/button';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { X } from 'lucide-react';
 
@@ -191,7 +191,7 @@ interface AlertProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<
   onClose?: () => void;
 }
 
-interface AlertIconProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof alertVariants> {}
+interface AlertIconProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof alertVariants> { }
 
 function Alert({ className, variant, size, icon, appearance, close = false, onClose, children, ...props }: AlertProps) {
   return (
