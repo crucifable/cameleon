@@ -74,7 +74,12 @@ const Demo = () => {
           </Link>
           <Link href="/tools" className="w-full sm:w-auto">
             <Button size="lg" variant="secondary" className="rounded-full h-12 w-full sm:w-auto px-8 text-lg bg-secondary/80 hover:bg-secondary">
-              Start using tools
+              Start Using Tools
+            </Button>
+          </Link>
+          <Link href="/request-tool" className="w-full sm:w-auto">
+            <Button size="lg" variant="secondary" className="rounded-full h-12 w-full sm:w-auto px-8 text-lg bg-secondary/80 hover:bg-secondary">
+              Request New Tool
             </Button>
           </Link>
         </div>
