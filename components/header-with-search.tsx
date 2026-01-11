@@ -1,6 +1,7 @@
 "use client"
 import React from 'react';
 import { Grid2x2PlusIcon, MenuIcon, SearchIcon } from 'lucide-react';
+import { motion } from 'motion/react';
 import { Sheet, SheetContent, SheetFooter, SheetTitle } from '@/components/sheet';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -39,6 +40,10 @@ export function Header() {
 			href: '/terms',
 		},
 		{
+			label: 'Feedback',
+			href: '/feedback-tool',
+		},
+		{
 			label: 'Settings',
 			href: '/settings',
 		},
@@ -52,10 +57,14 @@ export function Header() {
 			)}
 		>
 			<nav className="flex h-14 w-full items-center justify-between px-6">
-				<a href="/" className="hover:bg-accent flex cursor-pointer items-center gap-1 rounded-md px-2 py-1 duration-100">
-					<img src="/cameleon.png" alt="Cameleon Logo" className="size-6" />
-					<p className="font-product text-md font-bold">Crucible</p>
-					<p className="font-product text-md">Cameleon</p>
+				<a href="/" className="group hover:bg-white/5 flex cursor-pointer items-center gap-3 rounded-2xl px-3 py-2 duration-300">
+					<div className="bg-secondary/10 p-2 rounded-xl border border-white/5 shadow-inner group-hover:bg-secondary/20 transition-colors">
+						<img src="/cameleon.png" alt="Cameleon Logo" className="size-7 object-contain group-hover:scale-110 transition-transform duration-300" />
+					</div>
+					<div className="flex flex-col -space-y-1">
+						<p className="font-product text-lg font-bold text-primary tracking-tight">Spunix</p>
+						<p className="font-product text-[10px] text-foreground/50 uppercase tracking-[0.2em] font-bold">Cameleon Suite</p>
+					</div>
 				</a>
 				<div className="flex items-center gap-2">
 					<div className="hidden items-center gap-1 lg:flex">

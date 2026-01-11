@@ -12,9 +12,9 @@ export async function POST(req: Request) {
 
     try {
         const body = await req.json()
-        const { toolName, toolDescription, toolUrl } = body
+        const { type, toolName, toolDescription, toolUrl } = body
 
-        if (!toolName || !toolDescription) {
+        if (!type || !toolName || !toolDescription) {
             return new NextResponse("Missing required fields", { status: 400 })
         }
 
@@ -37,44 +37,33 @@ export async function POST(req: Request) {
             ? `${discordUsername}#${discordDiscriminator}`
             : `@${discordUsername}`
 
-        // Check if user is in the server (if guild ID is provided)
-        if (guildId && accessToken) {
-            try {
-                const guildMemberResponse = await fetch(
-                    `https://discord.com/api/v10/users/@me/guilds/${guildId}/member`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${accessToken}`,
-                        },
-                    }
-                )
-
-                if (!guildMemberResponse.ok) {
-                    return new NextResponse(
-                        "You must be a member of our Discord server to submit requests. Please join our server first.",
-                        { status: 403 }
-                    )
-                }
-            } catch (error) {
-                console.error("Error checking guild membership:", error)
-                // Continue anyway if check fails (optional: you can make this stricter)
-            }
+        const typeLabels: Record<string, string> = {
+            feature: "✨ Missing Feature / Inaccuracy",
+            bug: "🐛 Bug Report",
+            request: "🛠️ New Tool Request",
+            other: "📝 Other Feedback"
         }
 
         const discordPayload = {
-            content: "🛠️ **New Tool Request Received!**",
+            content: `📣 **New Feedback Received: ${typeLabels[type] || type}**`,
             embeds: [
                 {
                     title: toolName,
                     description: toolDescription,
-                    color: 5814783, // Bluish color
+                    color: type === 'bug' ? 15548997 : (type === 'feature' ? 5763719 : 5814783),
                     fields: [
+                        {
+                            name: "Type",
+                            value: typeLabels[type] || type,
+                            inline: true,
+                        },
                         {
                             name: "Reference URL",
                             value: toolUrl || "N/A",
+                            inline: true,
                         },
                         {
-                            name: "Requested By",
+                            name: "Submitted By",
                             value: `${session.user.name || discordTag}`,
                             inline: true,
                         },

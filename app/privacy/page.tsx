@@ -20,7 +20,7 @@ export default function PrivacyPolicy() {
                         <section>
                             <h2 className="text-2xl font-semibold mb-3">1. Introduction</h2>
                             <p>
-                                Crucible Cameleon ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy
+                                Spunix Cameleon ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy
                                 explains how we collect, use, disclose, and safeguard your information when you use our Service.
                             </p>
                         </section>

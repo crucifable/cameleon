@@ -20,7 +20,7 @@ export default function TermsOfService() {
                         <section>
                             <h2 className="text-2xl font-semibold mb-3">1. Acceptance of Terms</h2>
                             <p>
-                                By accessing and using Crucible Cameleon ("the Service"), you accept and agree to be bound by the terms
+                                By accessing and using Spunix Cameleon ("the Service"), you accept and agree to be bound by the terms
                                 and provision of this agreement. If you do not agree to these Terms of Service, please do not use the Service.
                             </p>
                         </section>
@@ -28,7 +28,7 @@ export default function TermsOfService() {
                         <section>
                             <h2 className="text-2xl font-semibold mb-3">2. Description of Service</h2>
                             <p>
-                                Crucible Cameleon provides a collection of online tools and utilities accessible through our website.
+                                Spunix Cameleon provides a collection of online tools and utilities accessible through our website.
                                 The Service allows users to access various tools, request new features, and interact with our platform
                                 through Discord authentication.
                             </p>
@@ -58,7 +58,7 @@ export default function TermsOfService() {
                         <section>
                             <h2 className="text-2xl font-semibold mb-3">5. Intellectual Property</h2>
                             <p>
-                                The Service and its original content, features, and functionality are owned by Crucible Cameleon and are
+                                The Service and its original content, features, and functionality are owned by Spunix Cameleon and are
                                 protected by international copyright, trademark, patent, trade secret, and other intellectual property laws.
                             </p>
                         </section>
@@ -74,7 +74,7 @@ export default function TermsOfService() {
                         <section>
                             <h2 className="text-2xl font-semibold mb-3">7. Limitation of Liability</h2>
                             <p>
-                                In no event shall Crucible Cameleon be liable for any indirect, incidental, special, consequential, or
+                                In no event shall Spunix Cameleon be liable for any indirect, incidental, special, consequential, or
                                 punitive damages resulting from your use of or inability to use the Service.
                             </p>
                         </section>

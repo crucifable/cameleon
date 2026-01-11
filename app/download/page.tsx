@@ -35,9 +35,9 @@ export default function DownloadPage() {
             <div className="relative z-10 flex flex-col items-center pt-32 pb-20 px-4">
                 {/* Hero Section */}
                 <div className="flex flex-col items-center mb-16 text-center animate-fade-in-up">
-                    <img src="/cameleon.png" alt="Cameleon Logo" className="size-20 mb-8" />
+                    <img src="/cameleon.png" alt="Cameleon Logo" className="size-24 mb-6 shadow-2xl" />
                     <h1 className="font-product text-5xl md:text-6xl font-medium tracking-tight mb-4">
-                        Download Cameleon
+                        Download Spunix
                     </h1>
                 </div>
 

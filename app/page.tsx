@@ -50,10 +50,10 @@ const Demo = () => {
 
       <div className="relative z-10 flex flex-col items-center text-center w-full max-w-5xl px-4 mx-auto pt-32 pb-20">
         {/* Brand Label */}
-        <Link href="/" className="flex items-center gap-2 mb-8 animate-fade-in-up hover:opacity-80 transition-opacity cursor-pointer">
-          <img src="/cameleon.png" alt="Cameleon Logo" className="size-8" />
-          <span className="font-product text-2xl text-foreground">
-            <span className="font-bold">Crucible</span> <span className="font-normal">Cameleon</span>
+        <Link href="/" className="flex items-center gap-3 mb-8 animate-fade-in-up hover:opacity-80 transition-opacity cursor-pointer">
+          <img src="/cameleon.png" alt="Cameleon Logo" className="size-10" />
+          <span className="font-product text-3xl text-foreground">
+            <span className="font-bold text-primary">Spunix</span> <span className="font-normal">Cameleon</span>
           </span>
         </Link>
 
@@ -77,9 +77,9 @@ const Demo = () => {
               Start Using Tools
             </Button>
           </Link>
-          <Link href="/request-tool" className="w-full sm:w-auto">
+          <Link href="/feedback-tool" className="w-full sm:w-auto">
             <Button size="lg" variant="secondary" className="rounded-full h-12 w-full sm:w-auto px-8 text-lg bg-secondary/80 hover:bg-secondary">
-              Request New Tool
+              Feedback & Request
             </Button>
           </Link>
         </div>

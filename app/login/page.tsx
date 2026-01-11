@@ -21,12 +21,12 @@ function LoginContent() {
                 <div className="absolute -top-[50%] -left-[50%] w-[200%] h-[200%] rotate-12 bg-gradient-to-br from-white/5 via-transparent to-transparent pointer-events-none" />
 
                 <div className="space-y-4 relative z-10">
-                    <div className="bg-background/50 w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-6 border border-white/10 shadow-lg">
-                        <img src="/cameleon.png" alt="Cameleon Logo" className="size-12" />
+                    <div className="bg-primary/10 w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-6 border border-primary/20 shadow-lg group">
+                        <img src="/cameleon.png" alt="Cameleon Logo" className="size-12 group-hover:scale-110 transition-transform duration-300" />
                     </div>
                     <h1 className="text-4xl font-bold tracking-tight font-product text-foreground">Login</h1>
                     <p className="text-muted-foreground text-lg leading-relaxed">
-                        Please sign in with Discord to access the full features of Cameleon.
+                        Please sign in with Discord to access the full features of Spunix.
                     </p>
                 </div>
 

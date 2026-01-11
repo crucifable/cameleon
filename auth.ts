@@ -10,7 +10,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         Discord({
             authorization: {
                 params: {
-                    scope: "identify email guilds.members.read",
+                    scope: "identify email",
                 },
             },
         }),

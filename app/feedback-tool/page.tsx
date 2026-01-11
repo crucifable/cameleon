@@ -1,12 +1,12 @@
 import { auth } from "@/auth"
-import { RequestToolForm } from "./request-form"
+import { FeedbackForm } from "./request-form"
 import { Header } from "@/components/header-with-search"
 import { Particles } from "@/components/ui/particles"
 
 
 export const runtime = 'edge'
 
-export default async function RequestToolPage() {
+export default async function FeedbackPage() {
     const session = await auth()
 
     return (
@@ -19,7 +19,7 @@ export default async function RequestToolPage() {
 
             <div className="relative z-10 w-full px-4 py-32">
                 <div className="flex justify-center items-start min-h-[60vh]">
-                    <RequestToolForm session={session} />
+                    <FeedbackForm session={session} />
                 </div>
             </div>
 

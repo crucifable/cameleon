@@ -37,8 +37,8 @@ function Footerdemo() {
               <a href="/about" className="block transition-colors hover:text-primary">
                 About
               </a>
-              <a href="/request-tool" className="block transition-colors hover:text-primary">
-                Request tool
+              <a href="/feedback-tool" className="block transition-colors hover:text-primary">
+                Feedback & Request
               </a>
               <a href="/tools" className="block transition-colors hover:text-primary">
                 Use tools
@@ -68,7 +68,7 @@ function Footerdemo() {
         </div>
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t pt-8 text-center md:flex-row">
           <p className="text-sm text-muted-foreground">
-            © 2025 Cameleon. All rights reserved.
+            © 2025 Spunix Cameleon. All rights reserved.
           </p>
           <nav className="flex gap-4 text-sm">
             <a href="/privacy" className="transition-colors hover:text-primary">

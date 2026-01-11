@@ -3,7 +3,7 @@ import {
     Image, FileSpreadsheet, FileCode, FileInput, FileOutput,
     Video, Mic, Speaker, Play, Square, Layers, Crop,
     FlipHorizontal, Minimize2, Repeat, Volume2, Gauge,
-    Activity, Music, Type, FileArchive, BookOpen, HardDrive, LucideIcon
+    Activity, Music, Type, FileArchive, BookOpen, HardDrive, LucideIcon, Download
 } from 'lucide-react';
 import React from 'react';
 
@@ -11,8 +11,9 @@ export type ToolItem = {
     id: string;
     title: string;
     description: string;
-    category: 'PDF Tools' | 'Video Tools' | 'Audio Tools' | 'Converters';
+    category: 'PDF Tools' | 'Video Tools' | 'Audio Tools' | 'Converters' | 'System Tools';
     icon: LucideIcon;
+    tags?: string[];
 };
 
 export const toolsData: ToolItem[] = [
@@ -23,6 +24,7 @@ export const toolsData: ToolItem[] = [
         description: 'Separate one PDF file into multiple files.',
         category: 'PDF Tools',
         icon: Scissors,
+        tags: ['Light'],
     },
     {
         id: 'pdf-merge',
@@ -37,6 +39,7 @@ export const toolsData: ToolItem[] = [
         description: 'Reduce the size of your PDF files.',
         category: 'PDF Tools',
         icon: Minimize2,
+        tags: ['Heavy'],
     },
     {
         id: 'pdf-unlock',
@@ -72,6 +75,7 @@ export const toolsData: ToolItem[] = [
         description: 'Convert PDF files to editable Word documents.',
         category: 'PDF Tools',
         icon: FileType,
+        tags: ['Online'],
     },
     {
         id: 'pdf-to-excel',
@@ -107,6 +111,7 @@ export const toolsData: ToolItem[] = [
         description: 'Convert JPG images into a PDF file.',
         category: 'PDF Tools',
         icon: FileOutput,
+        tags: ['Light'],
     },
 
     // Video Tools
@@ -116,6 +121,7 @@ export const toolsData: ToolItem[] = [
         description: 'Edit your videos directly in the browser.',
         category: 'Video Tools',
         icon: Video,
+        tags: ['Heavy', 'App Only'],
     },
     {
         id: 'screen-recorder',
@@ -123,6 +129,7 @@ export const toolsData: ToolItem[] = [
         description: 'Record your screen directly from your browser.',
         category: 'Video Tools',
         icon: Video,
+        tags: ['Light', 'New'],
     },
     {
         id: 'text-to-speech',
@@ -130,6 +137,7 @@ export const toolsData: ToolItem[] = [
         description: 'Convert text into natural sounding speech.',
         category: 'Video Tools',
         icon: Speaker,
+        tags: ['Online', 'Heavy'],
     },
     {
         id: 'merge-videos',
@@ -193,6 +201,15 @@ export const toolsData: ToolItem[] = [
         description: 'Remove shakiness from your video.',
         category: 'Video Tools',
         icon: Activity,
+        tags: ['Limited'],
+    },
+    {
+        id: 'video-downloader',
+        title: 'Video Downloader',
+        description: 'Download videos from various platforms using just a link.',
+        category: 'Video Tools',
+        icon: Download,
+        tags: ['Online', 'New'],
     },
     {
         id: 'video-recorder',
@@ -232,6 +249,7 @@ export const toolsData: ToolItem[] = [
         description: 'Convert audio files to different formats.',
         category: 'Converters',
         icon: Music,
+        tags: ['Online'],
     },
     {
         id: 'video-converter',
@@ -239,6 +257,7 @@ export const toolsData: ToolItem[] = [
         description: 'Convert video files to different formats.',
         category: 'Converters',
         icon: Video,
+        tags: ['Heavy'],
     },
     {
         id: 'image-converter',
@@ -246,6 +265,7 @@ export const toolsData: ToolItem[] = [
         description: 'Convert image files to different formats.',
         category: 'Converters',
         icon: Image,
+        tags: ['Light', 'Direct'],
     },
     {
         id: 'document-converter',
@@ -267,5 +287,22 @@ export const toolsData: ToolItem[] = [
         description: 'Extract files from compressed archives.',
         category: 'Converters',
         icon: FileArchive,
+    },
+    // System Tools
+    {
+        id: 'device-inspector',
+        title: 'Device Inspector',
+        description: 'Check your device performance, network latency, and system specifications.',
+        category: 'System Tools',
+        icon: Activity,
+        tags: ['Light', 'Direct'],
+    },
+    {
+        id: 'metadata-checker',
+        title: 'Metadata Checker',
+        description: 'View and analyze metadata for any file. Supports multiple files.',
+        category: 'System Tools',
+        icon: FileText,
+        tags: ['Light', 'Direct', 'New'],
     },
 ];
