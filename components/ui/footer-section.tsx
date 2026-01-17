@@ -46,8 +46,8 @@ function Footerdemo() {
               <a href="/changelog" className="block transition-colors hover:text-primary">
                 Changelog
               </a>
-              <a href="/settings" className="block transition-colors hover:text-primary">
-                Settings
+              <a href="/account" className="block transition-colors hover:text-primary">
+                Account
               </a>
             </nav>
           </div>

@@ -20,6 +20,7 @@ import { Input } from "@/components/ui/input";
 
 export default function UrlShortenerPage() {
     const [longUrl, setLongUrl] = useState("");
+    const [alias, setAlias] = useState("");
     const [shortUrl, setShortUrl] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
@@ -37,7 +38,7 @@ export default function UrlShortenerPage() {
             const res = await fetch("/api/shorten", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ url: longUrl }),
+                body: JSON.stringify({ url: longUrl, alias }),
             });
 
             const data = await res.json();
@@ -46,6 +47,7 @@ export default function UrlShortenerPage() {
                 setError(data.error);
             } else {
                 setShortUrl(data.shortUrl);
+                setAlias(""); // Clear alias on success
             }
         } catch (err) {
             setError("Something went wrong. Please try again.");
@@ -93,13 +95,28 @@ export default function UrlShortenerPage() {
                         <form onSubmit={handleShorten} className="relative z-10 space-y-6">
                             <div className="space-y-4">
                                 <label className="text-sm font-bold text-muted-foreground uppercase tracking-widest ml-1">Paste your long link</label>
+                                <Input
+                                    placeholder="https://example.com/very/long/url/that/needs/to/be/shortened"
+                                    value={longUrl}
+                                    onChange={(e) => setLongUrl(e.target.value)}
+                                    className="h-14 md:h-16 px-6 bg-white/5 border-white/10 rounded-2xl text-white placeholder:text-white/20 focus:ring-primary/50 text-lg flex-1"
+                                />
+                            </div>
+
+                            <div className="space-y-4">
+                                <label className="text-sm font-bold text-muted-foreground uppercase tracking-widest ml-1">Custom Alias (Optional)</label>
                                 <div className="flex flex-col sm:flex-row gap-3">
-                                    <Input
-                                        placeholder="https://example.com/very/long/url/that/needs/to/be/shortened"
-                                        value={longUrl}
-                                        onChange={(e) => setLongUrl(e.target.value)}
-                                        className="h-14 md:h-16 px-6 bg-white/5 border-white/10 rounded-2xl text-white placeholder:text-white/20 focus:ring-primary/50 text-lg flex-1"
-                                    />
+                                    <div className="relative flex-1 group">
+                                        <div className="absolute left-6 top-1/2 -translate-y-1/2 text-white/40 font-mono text-lg group-focus-within:text-primary transition-colors">
+                                            ccameleon.com/
+                                        </div>
+                                        <Input
+                                            placeholder="my-awesome-link"
+                                            value={alias}
+                                            onChange={(e) => setAlias(e.target.value.replace(/\s+/g, '-'))}
+                                            className="h-14 md:h-16 pl-[135px] pr-6 bg-white/5 border-white/10 rounded-2xl text-white placeholder:text-white/20 focus:ring-primary/50 text-lg flex-1 font-mono"
+                                        />
+                                    </div>
                                     <Button
                                         type="submit"
                                         disabled={loading || !longUrl}
@@ -108,6 +125,9 @@ export default function UrlShortenerPage() {
                                         {loading ? <Loader2 className="size-6 animate-spin" /> : "Shorten"}
                                     </Button>
                                 </div>
+                                <p className="text-xs text-muted-foreground/60 ml-1">
+                                    Login to your <Link href="/account" className="text-primary hover:underline">Account</Link> to manage and track your links.
+                                </p>
                             </div>
 
                             {error && (

@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import { saveShortLink } from "@/lib/short-db";
+import { saveShortLink, isAliasAvailable } from "@/lib/short-db";
+import { auth } from "@/auth";
 
 export const runtime = "edge";
-import { crypto } from "next/dist/compiled/@edge-runtime/primitives";
 
 function generateCode(length = 6) {
     const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -15,7 +15,8 @@ function generateCode(length = 6) {
 
 export async function POST(request: Request) {
     try {
-        const { url } = await request.json();
+        const session = await auth();
+        const { url, alias } = await request.json();
 
         if (!url) {
             return NextResponse.json({ error: "URL is required" }, { status: 400 });
@@ -28,8 +29,25 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: "Invalid URL format" }, { status: 400 });
         }
 
-        const code = generateCode();
-        await saveShortLink(code, url);
+        let code = alias;
+
+        if (code) {
+            // Validate alias format (alphanumeric only)
+            if (!/^[a-zA-Z0-9_-]+$/.test(code)) {
+                return NextResponse.json({ error: "Alias can only contain letters, numbers, underscores and hyphens" }, { status: 400 });
+            }
+            if (code.length < 3) {
+                return NextResponse.json({ error: "Alias must be at least 3 characters" }, { status: 400 });
+            }
+            if (!(await isAliasAvailable(code))) {
+                return NextResponse.json({ error: "This alias is already taken" }, { status: 400 });
+            }
+        } else {
+            code = generateCode();
+        }
+
+        const discordId = (session?.user as any)?.discordId;
+        await saveShortLink(code, url, discordId);
 
         // We use the custom domain ccameleon.com
         const shortUrl = `https://ccameleon.com/${code}`;

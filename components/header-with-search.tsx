@@ -44,8 +44,8 @@ export function Header() {
 			href: '/feedback-tool',
 		},
 		{
-			label: 'Settings',
-			href: '/settings',
+			label: 'Account',
+			href: '/account',
 		},
 	];
 
