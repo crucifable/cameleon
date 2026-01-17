@@ -3,7 +3,7 @@ import {
     Image, FileSpreadsheet, FileCode, FileInput, FileOutput,
     Video, Mic, Speaker, Play, Square, Layers, Crop,
     FlipHorizontal, Minimize2, Repeat, Volume2, Gauge,
-    Activity, Music, Type, FileArchive, BookOpen, HardDrive, LucideIcon, Download
+    Activity, Music, Type, FileArchive, BookOpen, HardDrive, LucideIcon, Download, QrCode, Link2
 } from 'lucide-react';
 import React from 'react';
 
@@ -11,7 +11,7 @@ export type ToolItem = {
     id: string;
     title: string;
     description: string;
-    category: 'PDF Tools' | 'Video Tools' | 'Audio Tools' | 'Converters' | 'System Tools';
+    category: 'PDF Tools' | 'Video Tools' | 'Audio Tools' | 'Converters' | 'System Tools' | 'Link Tools';
     icon: LucideIcon;
     tags?: string[];
 };
@@ -207,7 +207,7 @@ export const toolsData: ToolItem[] = [
         id: 'video-downloader',
         title: 'Video Downloader',
         description: 'Download videos from various platforms using just a link.',
-        category: 'Video Tools',
+        category: 'Link Tools',
         icon: Download,
         tags: ['Online', 'New'],
     },
@@ -304,5 +304,30 @@ export const toolsData: ToolItem[] = [
         category: 'System Tools',
         icon: FileText,
         tags: ['Light', 'Direct', 'New'],
+    },
+    // Link Tools
+    {
+        id: 'qr-generator',
+        title: 'QR Code Generator',
+        description: 'Generate high-quality QR codes for links, text, or contact information.',
+        category: 'Link Tools',
+        icon: QrCode,
+        tags: ['Light', 'Direct', 'New'],
+    },
+    {
+        id: 'url-encoder',
+        title: 'URL Encoder/Decoder',
+        description: 'Safely encode or decode URLs for web compatibility.',
+        category: 'Link Tools',
+        icon: Link2,
+        tags: ['Light', 'Direct', 'New'],
+    },
+    {
+        id: 'url-shortener',
+        title: 'URL Shortener',
+        description: 'Transform long, complex links into short, shareable URLs.',
+        category: 'Link Tools',
+        icon: Scissors,
+        tags: ['Light', 'Online', 'New'],
     },
 ];

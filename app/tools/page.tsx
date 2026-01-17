@@ -10,7 +10,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 
 
 export default function ToolsPage() {
-    const categories = ['PDF Tools', 'Video Tools', 'Audio Tools', 'Converters', 'System Tools'] as const;
+    const categories = ['PDF Tools', 'Video Tools', 'Audio Tools', 'Converters', 'System Tools', 'Link Tools'] as const;
 
     return (
         <div className="relative min-h-screen w-full overflow-hidden bg-background text-foreground">
