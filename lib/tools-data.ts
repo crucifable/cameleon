@@ -2,7 +2,7 @@ import {
     FileText, Merge, Scissors, Lock, Unlock, RotateCw, FileType,
     Image, FileSpreadsheet, FileCode, FileInput, FileOutput,
     Video, Mic, Speaker, Play, Square, Layers, Crop,
-    FlipHorizontal, Minimize2, Repeat, Volume2, Gauge,
+    FlipHorizontal, Minimize2, Repeat, Volume2, Gauge, Search,
     Activity, Music, Type, FileArchive, BookOpen, HardDrive, LucideIcon, Download, QrCode, Link2
 } from 'lucide-react';
 import React from 'react';
@@ -11,7 +11,7 @@ export type ToolItem = {
     id: string;
     title: string;
     description: string;
-    category: 'PDF Tools' | 'Video Tools' | 'Audio Tools' | 'Converters' | 'System Tools' | 'Link Tools';
+    category: 'PDF Tools' | 'Video Tools' | 'Audio Tools' | 'Converters' | 'System Tools' | 'Link Tools' | 'Miscellaneous';
     icon: LucideIcon;
     tags?: string[];
 };
@@ -329,5 +329,13 @@ export const toolsData: ToolItem[] = [
         category: 'Link Tools',
         icon: Scissors,
         tags: ['Light', 'Online', 'New'],
+    },
+    {
+        id: 'discord-lookup',
+        title: 'Discord User Lookup',
+        description: 'Lookup Discord user information, including profile picture, banner, and badges by User ID.',
+        category: 'Miscellaneous',
+        icon: Search,
+        tags: ['Online', 'New'],
     },
 ];
