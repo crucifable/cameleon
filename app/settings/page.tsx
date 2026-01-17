@@ -1,4 +1,5 @@
 import { auth } from "@/auth"
+export const runtime = "edge"
 import { Header } from "@/components/header-with-search"
 import { Particles } from "@/components/ui/particles"
 import { Button } from "@/components/ui/button"

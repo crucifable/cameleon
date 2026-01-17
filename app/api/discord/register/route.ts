@@ -2,6 +2,8 @@ import { auth } from "@/auth";
 import { registerDiscordMetadataSchema } from "@/lib/discord-metadata";
 import { NextResponse } from "next/server";
 
+export const runtime = "edge";
+
 export async function POST() {
     const session = await auth();
 
