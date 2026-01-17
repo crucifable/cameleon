@@ -16,7 +16,14 @@ export async function getShortLink(code: string): Promise<ShortLink | null> {
     try {
         const data = await redis.get(`${PREFIX}${code}`);
         if (!data) return null;
-        return (typeof data === 'string' ? JSON.parse(data) : data) as ShortLink;
+        const link = (typeof data === 'string' ? JSON.parse(data) : data) as ShortLink;
+
+        // Self-healing: Ensure link is in the user's list if ownerId exists
+        if (link.ownerId) {
+            redis.sadd(`${USER_PREFIX}${link.ownerId}`, code);
+        }
+
+        return link;
     } catch (error) {
         console.error('Redis get error:', error);
         return null;
@@ -65,19 +72,23 @@ export async function getUserLinks(userId: string): Promise<ShortLink[]> {
     if (!redis) return [];
     try {
         const codes = await redis.smembers(`${USER_PREFIX}${userId}`);
-        if (!codes.length) return [];
+        if (!codes || !codes.length) return [];
 
         const pipeline = redis.pipeline();
         codes.forEach(code => pipeline.get(`${PREFIX}${code}`));
-        const results = await pipeline.exec<string[]>();
+        const results = await pipeline.exec<any[]>();
 
         const links: ShortLink[] = [];
         results.forEach((data, index) => {
             if (data) {
-                links.push(JSON.parse(data));
+                try {
+                    const parsed = typeof data === 'string' ? JSON.parse(data) : data;
+                    links.push(parsed as ShortLink);
+                } catch (e) {
+                    console.error('Failed to parse link data:', data);
+                }
             } else {
                 // If data is null, the link has expired in Redis
-                // We should probably remove it from the user set too
                 redis?.srem(`${USER_PREFIX}${userId}`, codes[index]);
             }
         });
