@@ -3,6 +3,10 @@ import redis from './redis';
 const PREFIX = 'short:';
 
 export async function getOriginalUrl(code: string): Promise<string | null> {
+    if (!redis) {
+        console.error('Redis is not configured. Cannot retrieve link.');
+        return null;
+    }
     try {
         return await redis.get(`${PREFIX}${code}`);
     } catch (error) {
@@ -12,8 +16,11 @@ export async function getOriginalUrl(code: string): Promise<string | null> {
 }
 
 export async function saveShortLink(code: string, url: string): Promise<void> {
+    if (!redis) {
+        console.error('Redis is not configured. Cannot save link.');
+        throw new Error('Database connection missing');
+    }
     try {
-        // Save the link with no expiration (or you could add a TTL if desired)
         await redis.set(`${PREFIX}${code}`, url);
     } catch (error) {
         console.error('Redis set error:', error);
